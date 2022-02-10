@@ -8,7 +8,7 @@ const siteList = require(config.siteIndex);
 console.log("Loading sites list...");
 
 app.get('/', (req, res) => {
-  res.send('<center><h1>Weblocks</h1><HR/><b>Hello World!</b><br/>Another weblocks server.</center>')
+  res.send('<center><h1>Weblocks</h1><HR/><b>Hello World!</b><br/>Another weblocks server. <i><a href="https://github.com/HydroGest/Weblocks">GitHub</a></i> </center>')
 });
 
 app.listen(port, () => {
