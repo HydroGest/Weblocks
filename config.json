@@ -1,0 +1,6 @@
+{
+    "appName":"Weblocks",
+    "port":8601,
+    "projectsIndex":"./project",
+    "sitesIndex":"sites.json"
+}
