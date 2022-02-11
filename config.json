@@ -1,6 +1,8 @@
 {
+    /* Your App name. You can modify it at will. */
     "appName":"Weblocks",
+    /* The port your app listens to. You can change it into 80 */
     "port":"8601",
-    "projectsIndex":"./project",
-    "sitesIndex":"sites.json"
+    /* Project directory to load */
+    "projectsIndex":"./project"
 }

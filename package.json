@@ -4,7 +4,7 @@
   "description": "A web server for SB3 files.",
   "main": "index.js",
   "scripts": {
-    "server": "index.js",
+    "server": "./index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
