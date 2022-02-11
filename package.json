@@ -4,7 +4,7 @@
   "description": "A web server for SB3 files.",
   "main": "index.js",
   "scripts": {
-    "server": "./index.js",
+    "server": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,6 +27,8 @@
   "homepage": "https://github.com/HydroGest/Weblocks#readme",
   "dependencies": {
     "@turbowarp/packager": "0.5.0",
-    "express": "^4.17.2"
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "morgan": "^1.10.0"
   }
 }
