@@ -7,8 +7,18 @@ const rl=readline.createInterface({
 	input:process.stdin,
 	output:process.stdout
 });
+async function pkgr(fdt){
+    projectData=fdt
+    packager.project = loadedProject;
+    packager.options.app.windowTitle=site[i-1].siteName;
+    var result = await packager.package();
+    return result.data;
+}
 var logger = require('morgan');
 var silent = process.env.NODE_ENV === 'test'
+const Packager = require('@turbowarp/packager');
+const fs = require('fs');
+const packager = new Packager.Packager();
 
 // general config
 app.set('views', path.join(__dirname, 'views'));
@@ -17,14 +27,24 @@ app.enable('verbose errors');
 console.log("Reading config...");
 const config = require('./config.json');
 const port = config.port;
+
+console.log("Loading sites...");
 const sites= require('./sites.json');
-console.log(sites[0]);
-
-//const siteList = require(config.siteIndex);
-
 app.get('/', (req, res) => {
   res.send('<center><h1>Weblocks</h1><HR/><b>Hello World!</b><br/>Another weblocks server. <i><a href="https://github.com/HydroGest/Weblocks">GitHub</a></i> </center>')
 });
+var projectData="";
+for (var i=1;i<=sites.length;i++){
+    try{
+        projectData = fs.readFileSync(config.projectsIndex+'/'+sites[i-1].projectFile);
+        data=pkgr(projectData);
+        app.get(sites[i-1].viewPath, (req, res) => {
+            res.send(data)
+        });
+    }catch(err){
+        console.error("Failed to load file `"+config.projectsIndex+"/"+sites[i-1].projectFile+"` !")
+    }
+}
 
 app.get('/404', function(req, res, next){
   next();
