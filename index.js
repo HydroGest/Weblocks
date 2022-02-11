@@ -40,15 +40,15 @@ for (var i=1;i<=sites.length;i++){
     try{
         projectData = fs.readFileSync(config.projectsIndex+'/'+sites[i-1].projectFile);
         console.log(projectData)
-        //data=pkgr(projectData,sites[i-1].siteName);
-        /*app.get(sites[i-1].viewPath, (req, res) => {
+        data=pkgr(projectData,sites[i-1].siteName);
+        app.get(sites[i-1].viewPath, (req, res) => {
             res.send(data)
-        });*/
+        });
     }catch(err){
         console.error("Failed to load file `"+config.projectsIndex+"/"+sites[i-1].projectFile+"` !");
-        console.error(err);
+        //console.error(err);
     }
-    //console.log(data+"\n");
+    console.log(data+"\n");
 }
 
 app.get('/404', function(req, res, next){
