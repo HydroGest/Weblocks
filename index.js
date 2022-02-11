@@ -7,11 +7,13 @@ const rl=readline.createInterface({
 	input:process.stdin,
 	output:process.stdout
 });
-async function pkgr(fdt){
-    projectData=fdt
+async function pkgr(fdt,name){
+    projectData=fdt;
+    var progressCallback = (type, a, b) => {};
+    var loadedProject = await Packager.loadProject(projectData, progressCallback);
     packager.project = loadedProject;
-    packager.options.app.windowTitle=site[i-1].siteName;
-    var result = await packager.package();
+    packager.options.app.windowTitle=name;
+    var result = packager.package();
     return result.data;
 }
 var logger = require('morgan');
@@ -37,13 +39,16 @@ var projectData="";
 for (var i=1;i<=sites.length;i++){
     try{
         projectData = fs.readFileSync(config.projectsIndex+'/'+sites[i-1].projectFile);
-        data=pkgr(projectData);
-        app.get(sites[i-1].viewPath, (req, res) => {
+        console.log(projectData)
+        //data=pkgr(projectData,sites[i-1].siteName);
+        /*app.get(sites[i-1].viewPath, (req, res) => {
             res.send(data)
-        });
+        });*/
     }catch(err){
-        console.error("Failed to load file `"+config.projectsIndex+"/"+sites[i-1].projectFile+"` !")
+        console.error("Failed to load file `"+config.projectsIndex+"/"+sites[i-1].projectFile+"` !");
+        console.error(err);
     }
+    //console.log(data+"\n");
 }
 
 app.get('/404', function(req, res, next){

@@ -1,5 +1,5 @@
 {
     "appName":"Weblocks",
     "port":"8601",
-    "projectsIndex":"./project"
+    "projectsIndex":"./projects"
 }

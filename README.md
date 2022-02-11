@@ -17,9 +17,9 @@ You should edit the `config.json` to config Weblocks.
 
 ```javascript
 {
-     "appName":"..." //Your app's name.
-     "port":80 //The port your app will listen.
-     "projectIndex":"./project" //The path of your sb3 files. Weblocks Will load it.
+     "appName":"...", //Your app's name.
+     "port":80, //The port your app will listen.
+     "projectIndex":"./projects" //The path of your sb3 files. Weblocks Will load it.
 }
 ```
 ### Start!
