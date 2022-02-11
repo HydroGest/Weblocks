@@ -1,3 +1,4 @@
+
 # Weblocks
 A web server for SB3 files.
 
@@ -14,12 +15,12 @@ Then, npm will install all the package we need.
 
 You should edit the `config.json` to config Weblocks.
 
-```json
+```javascript
 {
      "appName":"..." //Your app's name.
      "port":80 //The port your app will listen.
      "projectIndex":"./project" //The path of your sb3 files. Weblocks Will load it.
-
+}
 ```
 ### Start!
 Run this code on your bash/shell
@@ -30,7 +31,7 @@ Then, you can try to visit `http://localhost:<your port>`.
 
 ## Add Sites
 Edit `sites.json` to manage your sites.
-```json
+```javascript
 [
     {
          "name":"Example",// Site name. Show as <title> in HTML 
