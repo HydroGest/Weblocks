@@ -17,6 +17,8 @@ app.enable('verbose errors');
 console.log("Reading config...");
 const config = require('./config.json');
 const port = config.port;
+const sites= require('./sites.json');
+console.log(sites[0]);
 
 //const siteList = require(config.siteIndex);
 

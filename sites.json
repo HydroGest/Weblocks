@@ -1,10 +1,7 @@
 [
     {
-        /* The name of The project, will show as <title>. */
         "name":"Example",
-        /* Path to this page. */
         "viewPath":"/example",
-        /* File path. Load from /projects by default. */
         "projectFile":"example.sb3"
     }
 ]
