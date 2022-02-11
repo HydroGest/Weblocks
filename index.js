@@ -7,21 +7,23 @@ const rl=readline.createInterface({
 	input:process.stdin,
 	output:process.stdout
 });
-async function pkgr(fdt,name){
-    projectData=fdt;
-    var progressCallback = (type, a, b) => {};
-    var loadedProject = await Packager.loadProject(projectData, progressCallback);
-    packager.project = loadedProject;
-    packager.options.app.windowTitle=name;
-    var result = packager.package();
-    return result.data;
-}
+const fs = require('fs');
 var logger = require('morgan');
 var silent = process.env.NODE_ENV === 'test'
+//require('./src/twapi.js');
 const Packager = require('@turbowarp/packager');
-const fs = require('fs');
+//const fs = require('fs');
 const packager = new Packager.Packager();
-
+async function pkgr(fdt,name){
+    const projectData=fdt;
+    const progressCallback = (type, a, b) => {};
+    const loadedProject = await Packager.loadProject(projectData, progressCallback);
+    const packager = new Packager.Packager();
+    packager.project = loadedProject;
+    packager.options.app.windowTitle=name;
+    const resultee = await packager.package();
+    return resultee.data;
+}
 // general config
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -35,20 +37,17 @@ const sites= require('./sites.json');
 app.get('/', (req, res) => {
   res.send('<center><h1>Weblocks</h1><HR/><b>Hello World!</b><br/>Another weblocks server. <i><a href="https://github.com/HydroGest/Weblocks">GitHub</a></i> </center>')
 });
-var projectData="";
 for (var i=1;i<=sites.length;i++){
     try{
-        projectData = fs.readFileSync(config.projectsIndex+'/'+sites[i-1].projectFile);
-        console.log(projectData)
-        data=pkgr(projectData,sites[i-1].siteName);
+        var projectData = fs.readFileSync(config.projectsIndex+'/'+sites[i-1].projectFile);
+        data=pkgr(projectData,projectData,sites[i-1].name);
         app.get(sites[i-1].viewPath, (req, res) => {
             res.send(data)
         });
     }catch(err){
         console.error("Failed to load file `"+config.projectsIndex+"/"+sites[i-1].projectFile+"` !");
-        //console.error(err);
+        console.error(err);
     }
-    console.log(data+"\n");
 }
 
 app.get('/404', function(req, res, next){
