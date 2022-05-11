@@ -1,5 +1,5 @@
 > # WARNING
-> This project will be no longer supported after May 1st, 2022.
+> This project has some problems. DO NOT use this project in a production environment.
 # Weblocks
 A web server for SB3 files.
 
