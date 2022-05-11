@@ -40,10 +40,11 @@ app.get('/', (req, res) => {
 for (var i=1;i<=sites.length;i++){
     try{
         var projectData = fs.readFileSync(config.projectsIndex+'/'+sites[i-1].projectFile);
-        data=pkgr(projectData,projectData,sites[i-1].name);
+        data=pkgr(projectData,sites[i-1].name);
         app.get(sites[i-1].viewPath, (req, res) => {
             res.send(data)
         });
+        console.log('Site: '+sites[i-1].name+' load successfully.')
     }catch(err){
         console.error("Failed to load file `"+config.projectsIndex+"/"+sites[i-1].projectFile+"` !");
         console.error(err);
